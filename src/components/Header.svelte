@@ -79,7 +79,7 @@
 			>
 				<form class="flex w-full border border-gray-200 bg-gray-200">
 					<input
-						class="p-2 min-w-0 grow placeholder:uppercase placeholder:italic placeholder:font-semibold focus:outline-non bg-transparent"
+						class="p-2 min-w-0 outline-none grow placeholder:uppercase placeholder:italic placeholder:font-semibold focus:outline-non bg-transparent"
 						inputmode="text"
 						bind:value={input}
 						placeholder="Zoek een artikel of sport"
