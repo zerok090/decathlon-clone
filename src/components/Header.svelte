@@ -10,42 +10,29 @@
 
 	import { openMenu } from '../stores/navigationStore';
 
-	let input = '';
-	let count = 0;
-
 	function toggleMenu() {
 		openMenu.update((val) => !val);
 	}
+
+	let input = '';
+	let count = 0;
 
 	$: stylesHeader = clsx(
 		'translate-x-0 z-20 top-0 left-0',
 		'h-full',
 		'w-screen',
-		$openMenu && 'pl-[20rem]',
-		$openMenu ? 'absolute' : 'sticky',
+		'sticky',
 		'overflow-x-hidden',
 		'drop-shadow-lg'
 	);
 
 	$: stylesHeaderBar = clsx(
-		!$openMenu && 'flex-wrap',
-		'flex justify-between sm:justify-normal sm:flex-nowrap sm:gap-1'
+		'flex flex-wrap justify-between sm:justify-normal sm:flex-nowrap sm:gap-1'
 	);
 
-	$: stylesSideNav = clsx(
-		!$openMenu ? 'hidden' : 'flex',
-		'fixed',
-		'right-[100%]',
-		'h-screen',
-		'top-0',
-		'w-[20rem]',
-		'left-0',
-		'flex-col overflow-hidden bg-blue-400 z-30 ease-in-out'
+	$: stylesMenuButton = clsx(
+		'flex gap-1 flex-col p-3 justify-center items-center h-full border-r border-gray-200'
 	);
-
-	$: stylesMenuButton = clsx("flex gap-1 flex-col p-3 justify-center items-center h-full border-r border-gray-200");
-
-	$: stylesCloseButton = clsx($openMenu && 'fixed top-0 bg-transparent -z-1 w-screen h-screen cursor-default opacity-25');
 </script>
 
 <header class={stylesHeader}>
@@ -142,6 +129,4 @@
 		</div>
 	</div>
 	<!--SideNav-->
-	<nav class={stylesSideNav}>SIDEMENU</nav>
-	<button class={stylesCloseButton} on:click={toggleMenu} />
 </header>
