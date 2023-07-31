@@ -1,3 +1,12 @@
 import { writable } from "svelte/store";
 
-export const openMenu = writable(false);
+function menuStore() {
+	const { subscribe, update } = writable(false);
+
+	return {
+		subscribe,
+		toggle: () => update((val) => !val),
+	};
+}
+
+export const openMenu = menuStore();

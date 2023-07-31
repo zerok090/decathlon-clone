@@ -1,18 +1,14 @@
 <script>
 	import Hamburger from '~icons/fa/bars';
-	import Cross from '~icons/fa/times';
 	import Cart from '~icons/fa/shopping-cart';
 	import Question from '~icons/fa/question';
 	import Store from '~icons/fa/building';
 	import User from '~icons/fa/user';
 	import Search from '~icons/fa/search';
+
 	import clsx from 'clsx';
 
 	import { openMenu } from '../stores/navigationStore';
-
-	function toggleMenu() {
-		openMenu.update((val) => !val);
-	}
 
 	let input = '';
 	let count = 0;
@@ -51,14 +47,10 @@
 					class={stylesMenuButton}
 					aria-controls="navbar-sticky"
 					aria-expanded="false"
-					on:click={toggleMenu}
+					on:click={openMenu.toggle}
 				>
 					<span class="sr-only">Open main menu</span>
-					{#if $openMenu}
-						<Cross />
-					{:else}
-						<Hamburger />
-					{/if}
+					<Hamburger />
 					<span class="text-xs">Menu</span>
 				</button>
 			</div>
@@ -128,5 +120,4 @@
 			</div>
 		</div>
 	</div>
-	<!--SideNav-->
 </header>

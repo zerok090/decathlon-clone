@@ -1,37 +1,52 @@
 <script>
+	import Cross from '~icons/fa/times';
+
 	import { slide } from 'svelte/transition';
 	import { quadIn } from 'svelte/easing';
+
 	import { openMenu } from '../stores/navigationStore';
 
 	import clsx from 'clsx';
 
 	$: stylesSideNav = clsx(
-		!$openMenu ? 'hidden' : 'flex',
+		$openMenu ? 'flex' : 'hidden',
 		'fixed',
-		'right-[100%]',
 		'h-screen',
 		'top-0',
-		'w-[20rem]',
+		'w-screen',
 		'left-0',
-		'flex-col overflow-hidden bg-blue-400 z-30 ease-in-out'
+		'flex-row z-30 overflow-hidden ease-in-out'
 	);
 
 	$: stylesCloseButton = clsx(
-		!$openMenu && 'hidden',
-		$openMenu && 'fixed flex top-0 bg-transparent -z-1 w-screen h-screen cursor-default opacity-25'
+		'bg-white flex top-0 bg-transparent -z-1 w-full h-screen cursor-default opacity-75'
 	);
 
-    function toggleMenu() {
-		openMenu.update((val) => !val);
-	}
+	$: stylesMenuButton = clsx(
+		$openMenu ? 'flex' : 'hidden',
+		'absolute',
+		'top-0 right-0',
+		'flex gap-1 flex-col p-3 justify-center items-center border-r border-gray-200'
+	);
 </script>
 
 {#if $openMenu}
-	<nav
-		transition:slide={{ delay: 250, duration: 300, easing: quadIn, axis: 'x' }}
+	<div
+		transition:slide={{ delay: 0, duration: 300, easing: quadIn, axis: 'x' }}
 		class={stylesSideNav}
 	>
-		SIDEMENU
-	</nav>
-	<button class={stylesCloseButton} on:click={toggleMenu} />
+		<nav class="w-[40rem] h-full bg-blue-400">SIDEMENU</nav>
+		<button
+			data-collapse-toggle="navbar-sticky"
+			type="button"
+			class={stylesMenuButton}
+			aria-controls="navbar-sticky"
+			aria-expanded="false"
+			on:click={openMenu.toggle}
+		>
+			<Cross />
+			<span class="text-xs">Close</span>
+		</button>
+		<button class={stylesCloseButton} on:click={openMenu.toggle} />
+	</div>
 {/if}
