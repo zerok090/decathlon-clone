@@ -1,13 +1,14 @@
 import { derived, writable } from 'svelte/store';
+import { fromLocalStorage, toLocalStorage } from '../client/localStorage';
+
+const storageKey = 'storedCart';
 
 function shoppingCart() {
-	/** @type {Map<number, number>} */
-	const cart = new Map();
+	/** @type {Map<import('../lib/types').ProductId, number>} */
+	const cart = fromLocalStorage(storageKey, new Map());
 	const { subscribe, update } = writable(cart);
 
-	/**
-	 * @param {import('../lib/types').ProductId} id
-	 * */
+	/** @param {import('../lib/types').ProductId} id */
 	function addItem(id) {
 		update((items) => {
 			const amount = items.get(id);
@@ -20,9 +21,7 @@ function shoppingCart() {
 		});
 	}
 
-	/**
-	 * @param {import('../lib/types').ProductId} id
-	 * */
+	/** @param {import('../lib/types').ProductId} id */
 	function removeItem(id) {
 		update((items) => {
 			const amount = items.get(id);
@@ -54,11 +53,14 @@ function shoppingCart() {
 }
 
 export const cart = shoppingCart();
+// local storage subscribes to cart state changes
+toLocalStorage(cart, storageKey);
+
 export const amount = derived(cart, ($cart) => {
 	let result = 0;
 
-	for (const key of $cart.keys()) {
-		result += $cart.get(key) || 0;
+	for (const value of $cart.values()) {
+		result += value;
 	}
 
 	return result;
