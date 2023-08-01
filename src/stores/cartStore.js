@@ -56,7 +56,7 @@ export const cart = shoppingCart();
 // local storage subscribes to cart state changes
 toLocalStorage(cart, storageKey);
 
-export const amount = derived(cart, ($cart) => {
+export const amount = derived(cart, async ($cart) => {
 	let result = 0;
 
 	for (const value of $cart.values()) {

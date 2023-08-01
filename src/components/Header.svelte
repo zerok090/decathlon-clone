@@ -90,11 +90,13 @@
 							class="z-10 flex items-center justify-center flex-col relative p-3 pr-4 bg-yellow-300 h-full before:origin-top-left before:skew-x-[-10deg] before:bg-yellow-300 before:absolute before:top-0 before:left-0 before:-z-10 before:w-full before:h-full"
 						>
 							<Cart class="text-xl" />
-							<div
-								class="absolute flex justify-center items-center top-1 left-[50%] px-1 text-[12px] min-w-[1.6rem] aspect-square bg-blue-600 text-white rounded-full"
-							>
-								{$amount}
-							</div>
+							{#await $amount then amount}
+								<div
+									class="absolute flex justify-center items-center top-1 left-[50%] px-1 text-[12px] min-w-[1.6rem] aspect-square bg-blue-600 text-white rounded-full"
+								>
+									{amount}
+								</div>
+							{/await}
 							<span class="hidden uppercase text-xs lg:block">Winkelwagen</span>
 						</a>
 					</li>
