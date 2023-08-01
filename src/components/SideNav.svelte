@@ -19,14 +19,17 @@
 	);
 
 	$: stylesCloseButton = clsx(
-		'bg-white flex top-0 bg-transparent -z-1 w-full h-screen cursor-default opacity-75'
+		'bg-white/60 flex top-0 -z-1 w-full h-screen cursor-default'
 	);
 
 	$: stylesMenuButton = clsx(
 		$openMenu ? 'flex' : 'hidden',
-		'absolute',
-		'top-0 right-0',
-		'flex gap-1 flex-col p-3 justify-center items-center border-r border-gray-200'
+		'uppercase',
+		'bg-blue-400',
+		'relative',
+		'h-min',
+		'top-0 left-0',
+		'flex gap-1 flex-col p-3 justify-center items-center',
 	);
 </script>
 
@@ -36,17 +39,17 @@
 		class={stylesSideNav}
 	>
 		<nav class="w-[40rem] h-full bg-blue-400">SIDEMENU</nav>
-		<button
-			data-collapse-toggle="navbar-sticky"
-			type="button"
-			class={stylesMenuButton}
-			aria-controls="navbar-sticky"
-			aria-expanded="false"
-			on:click={openMenu.toggle}
-		>
-			<Cross />
-			<span class="text-xs">Close</span>
+		<button class={stylesCloseButton} on:click={openMenu.toggle}>
+			<button
+				data-collapse-toggle="navbar-sticky"
+				type="button"
+				class={stylesMenuButton}
+				aria-controls="navbar-sticky"
+				aria-expanded="false"
+			>
+				<Cross />
+				<span class="text-xs">Sluiten</span>
+			</button>
 		</button>
-		<button class={stylesCloseButton} on:click={openMenu.toggle} />
 	</div>
 {/if}

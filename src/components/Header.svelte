@@ -9,9 +9,9 @@
 	import clsx from 'clsx';
 
 	import { openMenu } from '../stores/navigationStore';
+	import { amount } from '../stores/cartStore';
 
 	let input = '';
-	let count = 0;
 
 	$: stylesHeader = clsx(
 		'translate-x-0 z-20 top-0 left-0',
@@ -27,7 +27,7 @@
 	);
 
 	$: stylesMenuButton = clsx(
-		'flex gap-1 flex-col p-3 justify-center items-center h-full border-r border-gray-200'
+		'flex gap-1 uppercase flex-col p-3 justify-center items-center h-full border-r border-gray-200'
 	);
 </script>
 
@@ -93,7 +93,7 @@
 							<div
 								class="absolute flex justify-center items-center top-1 left-[50%] px-1 text-[12px] min-w-[1.6rem] aspect-square bg-blue-600 text-white rounded-full"
 							>
-								{count}
+								{$amount}
 							</div>
 							<span class="hidden uppercase text-xs lg:block">Winkelwagen</span>
 						</a>

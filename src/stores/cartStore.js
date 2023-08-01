@@ -1,4 +1,4 @@
-import { writable } from 'svelte/store';
+import { derived, writable } from 'svelte/store';
 
 function shoppingCart() {
 	/** @type {Map<number, number>} */
@@ -38,19 +38,28 @@ function shoppingCart() {
 		});
 	}
 
-    function clear() {
-        update((items) => {
-            items.clear();
-            return items;
-        })
-    }
+	function clear() {
+		update((items) => {
+			items.clear();
+			return items;
+		});
+	}
 
 	return {
 		subscribe,
 		addItem,
 		removeItem,
-        clear
+		clear
 	};
 }
 
 export const cart = shoppingCart();
+export const amount = derived(cart, ($cart) => {
+	let result = 0;
+
+	for (const key of $cart.keys()) {
+		result += $cart.get(key) || 0;
+	}
+
+	return result;
+});
