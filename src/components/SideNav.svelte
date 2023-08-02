@@ -18,9 +18,7 @@
 		'flex-row z-30 overflow-hidden ease-in-out'
 	);
 
-	$: stylesCloseButton = clsx(
-		'bg-white/60 flex top-0 -z-1 w-full h-screen cursor-default'
-	);
+	$: stylesCloseButton = clsx('bg-white/60 flex top-0 -z-1 w-full h-screen cursor-default');
 
 	$: stylesMenuButton = clsx(
 		$openMenu ? 'flex' : 'hidden',
@@ -29,7 +27,7 @@
 		'relative',
 		'h-min',
 		'top-0 left-0',
-		'flex gap-1 flex-col p-3 justify-center items-center',
+		'flex gap-1 flex-col p-3 justify-center items-center'
 	);
 </script>
 
@@ -38,7 +36,13 @@
 		transition:slide={{ delay: 0, duration: 300, easing: quadIn, axis: 'x' }}
 		class={stylesSideNav}
 	>
-		<nav class="w-[40rem] h-full bg-blue-400">SIDEMENU</nav>
+		<nav class="w-[40rem] h-full bg-blue-400">
+			<div>ELEMENT</div>
+			<div>ELEMENT</div>
+			<div>ELEMENT</div>
+			<div>ELEMENT</div>
+			<div>ELEMENT</div>
+		</nav>
 		<button class={stylesCloseButton} on:click={openMenu.toggle}>
 			<button
 				data-collapse-toggle="navbar-sticky"
