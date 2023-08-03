@@ -1,16 +1,13 @@
 <script>
+	import StickyNav from './StickyNav.svelte';
+
 	import Hamburger from '~icons/fa/bars';
-	import Cart from '~icons/fa/shopping-cart';
-	import Question from '~icons/fa/question';
-	import Store from '~icons/fa/building';
-	import User from '~icons/fa/user';
 	import Search from '~icons/fa/search';
 
 	import clsx from 'clsx';
 
 	import { openMenu } from '../stores/navigationStore';
-	import { amount } from '../stores/cartStore';
-
+	
 	let input = '';
 
 	$: stylesHeader = clsx(
@@ -56,51 +53,7 @@
 			</div>
 			<!--navigation icons-->
 			<div class="items-center md:flex md:w-auto order-3 sm:order-4" id="navbar-sticky">
-				<ul class="flex flex-row align-middle font-medium h-full">
-					<li>
-						<a
-							href="/"
-							class="hidden text-xs sm:flex items-center justify-center flex-col h-full py-2 pl-3 pr-4"
-						>
-							<Question class="text-xl" />
-							<span class="hidden uppercase lg:block">Help</span>
-						</a>
-					</li>
-					<li>
-						<a
-							href="/"
-							class="hidden text-xs sm:flex items-center justify-center flex-col h-full py-2 pl-3 pr-4"
-						>
-							<Store class="text-xl" />
-							<span class="hidden uppercase lg:block">Winkel info</span>
-						</a>
-					</li>
-					<li>
-						<a
-							href="/"
-							class="hidden text-xs sm:flex items-center justify-center flex-col h-full py-2 pl-3 pr-4"
-						>
-							<User class="text-xl" />
-							<span class="hidden uppercase lg:block">Mijn account</span>
-						</a>
-					</li>
-					<li>
-						<a
-							href="/cart"
-							class="z-10 flex items-center justify-center flex-col relative p-3 pr-4 bg-yellow-300 h-full before:origin-top-left before:skew-x-[-10deg] before:bg-yellow-300 before:absolute before:top-0 before:left-0 before:-z-10 before:w-full before:h-full"
-						>
-							<Cart class="text-xl" />
-							{#await $amount then amount}
-								<div
-									class="absolute flex justify-center items-center top-1 left-[50%] px-1 text-[12px] min-w-[1.6rem] aspect-square bg-blue-600 text-white rounded-full"
-								>
-									{amount}
-								</div>
-							{/await}
-							<span class="hidden uppercase text-xs lg:block">Winkelwagen</span>
-						</a>
-					</li>
-				</ul>
+				<StickyNav />
 			</div>
 			<!--Search-->
 			<div
