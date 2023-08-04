@@ -39,7 +39,7 @@
 			</div>
 			<!--Search-->
 			<div
-				class="order-4 w-full p-2 border border-gray-200 sm:order-3 sm:grow sm:w-0 sm:border-none"
+				class="flex content-center order-4 w-full p-2 border border-gray-200 sm:order-3 sm:grow sm:w-0 sm:border-none"
 			>
 				<form class="flex w-full border border-gray-200 bg-gray-200">
 					<input
