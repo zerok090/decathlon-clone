@@ -8,7 +8,7 @@
 	const numberOfStars = 5;
 </script>
 
-<div class="flex text-xs text-yellow-400">
+<div class="flex gap-2 text-xs text-yellow-400">
 	{#each { length: numberOfStars } as _, i}
 		{#if rating - i - 1 >= 0}
 			<Star />

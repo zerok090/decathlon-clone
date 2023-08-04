@@ -19,8 +19,9 @@
 
 <a href="/products/{id}" class="flex flex-col items-center">
 	<p>{price}</p>
+	<p>{category}</p>
 	<img src={image} alt="img" width="160" height="160" class="aspect-square object-contain" />
 	<p>{title}</p>
 	<p>{description}</p>
-	<div><Rating rating={rating.rate} /> ({rating.count})</div>
+	<div class="flex items-center gap-2"><Rating rating={rating.rate} /> ({rating.count})</div>
 </a>
