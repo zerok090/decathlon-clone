@@ -18,8 +18,6 @@
 		'flex-row z-30 overflow-hidden ease-in-out'
 	);
 
-	$: stylesCloseButton = clsx('bg-white/60 flex top-0 -z-1 w-full h-screen cursor-default');
-
 	$: stylesMenuButton = clsx(
 		$openMenu ? 'flex' : 'hidden',
 		'uppercase',
@@ -43,7 +41,10 @@
 			<div>ELEMENT</div>
 			<div>ELEMENT</div>
 		</nav>
-		<button class={stylesCloseButton} on:click={openMenu.toggle}>
+		<button
+			class="bg-white/60 flex top-0 -z-1 w-full h-screen cursor-default"
+			on:click={openMenu.toggle}
+		>
 			<button
 				data-collapse-toggle="navbar-sticky"
 				type="button"

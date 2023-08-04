@@ -4,44 +4,26 @@
 	import Hamburger from '~icons/fa/bars';
 	import Search from '~icons/fa/search';
 
-	import clsx from 'clsx';
-
 	import { openMenu } from '../stores/navigationStore';
-	
+
 	let input = '';
 
-	$: stylesHeader = clsx(
-		'translate-x-0 z-20 top-0 left-0',
-		'h-full',
-		'w-screen',
-		'sticky',
-		'overflow-x-hidden',
-		'drop-shadow-lg'
-	);
-
-	$: stylesHeaderBar = clsx(
-		'flex flex-wrap justify-between sm:justify-normal sm:flex-nowrap sm:gap-1'
-	);
-
-	$: stylesMenuButton = clsx(
-		'flex gap-1 uppercase flex-col p-3 justify-center items-center h-full border-r border-gray-200'
-	);
 </script>
 
-<header class={stylesHeader}>
-	<!--Header-->
+<header
+	class="drop-shadow-lg overflow-x-hidden sticky w-screen translate-x-0 z-20 top-0 left-0 h-full"
+>
 	<div class="bg-white w-full">
-		<div class={stylesHeaderBar}>
+		<div class="flex flex-wrap justify-between sm:justify-normal sm:flex-nowrap sm:gap-1">
 			<!--Logo-->
 			<a href="/" class="flex items-center order-2 p-2">
 				<img src="/decathlonLogo.jpg" class="min-w-[12rem] max-h-11 object-contain" alt="Logo" />
 			</a>
-			<!--Sidenavtoggle-->
+			<!--SideNav open-->
 			<div class="order-1 border-r-gray-20">
 				<button
-					data-collapse-toggle="navbar-sticky"
 					type="button"
-					class={stylesMenuButton}
+					class="flex gap-1 uppercase flex-col p-3 justify-center items-center h-full border-r border-gray-200"
 					aria-controls="navbar-sticky"
 					aria-expanded="false"
 					on:click={openMenu.toggle}
@@ -51,7 +33,7 @@
 					<span class="text-xs">Menu</span>
 				</button>
 			</div>
-			<!--navigation icons-->
+			<!--Navbar-->
 			<div class="items-center md:flex md:w-auto order-3 sm:order-4" id="navbar-sticky">
 				<StickyNav />
 			</div>

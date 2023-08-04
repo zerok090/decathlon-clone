@@ -1,11 +1,12 @@
 <script>
+	import StickyNavElement from './StickyNavElement.svelte';
+    
 	import Cart from '~icons/fa/shopping-cart';
 	import Question from '~icons/fa/question';
 	import Store from '~icons/fa/building';
 	import User from '~icons/fa/user';
 
 	import { amount } from '../stores/cartStore';
-	import StickyNavElement from './StickyNavElement.svelte';
 </script>
 
 <ul class="flex flex-row align-middle font-medium h-full">
