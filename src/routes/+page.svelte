@@ -4,7 +4,7 @@
 
 	import ProductCard from '$components/ProductCard.svelte';
 
-	const url = 'https://fakestoreapi.com/products';
+	const url = "https://fakestoreapi.com/products/category/men's clothing";
 
 	onMount(async () => {
 		fetch(url)
@@ -22,7 +22,7 @@
 <div>
 	<h1 class="text-3xl font-bold underline">Hello world!</h1>
 	<br />
-	<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
+	<div class="grid grid-cols-2 border-l border-t border-gray-200 border-solid sm:grid-cols-3 lg:grid-cols-4">
 		{#each $apiData as product}
 			<ProductCard {...product} />
 		{/each}
