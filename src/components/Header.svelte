@@ -7,7 +7,6 @@
 	import { openMenu } from '../stores/navigationStore';
 
 	let input = '';
-
 </script>
 
 <header
@@ -48,11 +47,12 @@
 						bind:value={input}
 						placeholder="Zoek een artikel of sport"
 					/>
-					<button
+					<a
 						class="z-10 relative bg-white h-full p-3 before:absolute before:bg-white before:w-full before:origin-top-left before:h-full before:skew-x-[-10deg] before:top-0 before:left-0 before:-z-10"
+						href={`/products/[${input}]`}
 					>
 						<Search class="z-10" />
-					</button>
+				</a>
 				</form>
 			</div>
 		</div>
