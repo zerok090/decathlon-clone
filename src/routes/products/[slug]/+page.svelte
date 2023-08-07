@@ -1,25 +1,10 @@
 <script>
-    /** @type {import('./$types').PageData} */
-    export let data;
+	/** @type {import('./$types').PageData} */
+	export let data;
 
-    import { onMount } from 'svelte';
 	import { apiData } from '$stores/productStore';
 
 	import ProductCard from '$components/ProductCard.svelte';
-
-	const url = "https://fakestoreapi.com/products/category/men's clothing";
-
-	onMount(async () => {
-		fetch(url)
-			.then((response) => response.json())
-			.then((data) => {
-				console.log(data);
-				apiData.set(data);
-			})
-			.catch((error) => {
-				console.log(error);
-			});
-	});
 </script>
 
 <div>
@@ -31,8 +16,8 @@
 			<div>{$apiData.length} producten</div>
 		</div>
 		<div>
-			<div></div>
-			<div></div>
+			<div>Categorien bij je zoekopdracht</div>
+			<div />
 		</div>
 	</div>
 	<!-- amount + filter button (opens sidenav) (hidden on screens bigger than ) + sort -->
