@@ -23,7 +23,7 @@
 </script>
 
 <a
-	href="/products/{id}"
+	href="/product/{id}"
 	class="flex gap-1 justify-center relative flex-col h-[290px] items-center p-3 px-4 text-sm border-b border-r border-gray-200 border-solid"
 >
 	<img src={image} alt="img" width="160" height="160" class="aspect-square object-contain" />
