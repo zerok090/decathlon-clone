@@ -13,16 +13,17 @@
 {#await data.item.promise}
 	<Loading />
 {:then item}
-	<div>
-		<article class="flex flex-col gap-2">
-			<div class="w-full relative flex flex-col items-center">
+	<div class="w-full flex flex-col gap-2 sm:gap-0">
+		<article class="grid grid-flow-row sm:grid-flow-col sm:grid-cols-12 md:grid-cols-10">
+			<div class="hidden md:block md:col-span-1" />
+			<div class="sm:col-span-8 md:col-span-5 relative flex flex-col items-center sm:flex-auto justify-center">
 				<img
-					class="max-w-[20rem] max-h-[20rem] aspect-square object-contain"
+					class="max-w-[20rem]  max-h-[20rem] aspect-square object-contain"
 					src={item.image}
 					alt={item.title}
 				/>
 			</div>
-			<div class="flex text-sm flex-col gap-2 p-2">
+			<div class="relative sm:col-span-4 md:col-span-3 flex text-sm flex-col h-full gap-2 p-3 py-6 justify-center sm:bg-gray-100 before:bottom-0 before:left-0 md:before:skew-x-[8deg] md:before:origin-bottom-left before:w-full before:h-full before:absolute before:content before:-z-10 before:bg-gray-100">
 				<h1 class="font-bold text-base">{item.title}</h1>
 				<div class="max-w-fit"><Price price={item.price} /></div>
 				<div class="flex gap-2 items-center text-xs">
@@ -30,8 +31,8 @@
 					<strong class="flex items-center gap-2 h-full">
 						<div class="text-sm">{item.rating.rate}/5</div>
 						<a class="underline text-center" href="#reviews"
-							>Bekijk alle {item.rating.count} reviews</a
-						>
+							>Bekijk alle {item.rating.count} reviews
+						</a>
 					</strong>
 				</div>
 				<div>{item.description}</div>
@@ -41,6 +42,7 @@
 					>Toevoegen aan winkelwagen</button
 				>
 			</div>
+			<div class="hidden md:block md:col-span-1 bg-gray-100" />
 		</article>
 		<div class="flex flex-col last:border-b">
 			<Dropdown title="Aanbevolen artikelen">
