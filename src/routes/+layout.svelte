@@ -7,7 +7,7 @@
 </script>
 
 <SideNav />
-<div class="flex gap-2 flex-col min-h-screen">
+<div class="flex flex-col min-h-screen">
 	<Header />
 	<main class="flex items-stretch flex-1 relative">
 		<slot />
