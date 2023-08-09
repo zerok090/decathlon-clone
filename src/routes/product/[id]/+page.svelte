@@ -14,7 +14,7 @@
 	<Loading />
 {:then item}
 	<div class="w-full flex flex-col gap-2 sm:gap-0">
-		<article class="grid grid-flow-row sm:grid-flow-col sm:grid-cols-12 md:grid-cols-10">
+		<article class="grid grid-flow-row sm:min-h-[50rem] sm:grid-flow-col sm:grid-cols-12 md:grid-cols-10">
 			<div class="hidden md:block md:col-span-1" />
 			<div class="sm:col-span-8 md:col-span-5 relative flex flex-col items-center sm:flex-auto justify-center">
 				<img
