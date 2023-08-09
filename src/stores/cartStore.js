@@ -4,11 +4,11 @@ import { fromLocalStorage, toLocalStorage } from '../client/localStorage';
 const storageKey = 'storedCart';
 
 function shoppingCart() {
-	/** @type {Map<import('../lib/types').ProductId, number>} */
+	/** @type {Map<import('$lib/types').ProductId, number>} */
 	const cart = fromLocalStorage(storageKey, new Map());
 	const { subscribe, update } = writable(cart);
 
-	/** @param {import('../lib/types').ProductId} id */
+	/** @param {import('$lib/types').ProductId} id */
 	function addItem(id) {
 		update((items) => {
 			const amount = items.get(id);
@@ -21,7 +21,7 @@ function shoppingCart() {
 		});
 	}
 
-	/** @param {import('../lib/types').ProductId} id */
+	/** @param {import('$lib/types').ProductId} id */
 	function removeItem(id) {
 		update((items) => {
 			const amount = items.get(id);
