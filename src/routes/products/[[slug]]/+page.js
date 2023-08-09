@@ -2,7 +2,12 @@
 
 /** @type {import('./$types').PageLoad} */
 export const load = ({ params }) => {
-	const url = `https://fakestoreapi.com/products/category/${params.slug}`;
+	let url = '';
+	if (params.slug) {
+		url = `https://fakestoreapi.com/products/category/${params.slug}`;
+	} else {
+		url = 'https://fakestoreapi.com/products/';
+	}
 
 	/** @type {Promise<Product[]>} */
 	const items = fetch(url)
@@ -16,6 +21,6 @@ export const load = ({ params }) => {
 
 	return {
 		search: params.slug,
-		items: { promise: items}
+		items: { promise: items }
 	};
 };
