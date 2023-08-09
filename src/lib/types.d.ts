@@ -1,8 +1,11 @@
-export type Product = {
-	id: ProducId;
-	title: string;
-	category: number;
-	picture: Byte[];
-};
-
 export type ProductId = number;
+
+export type Product = {
+	id: ProductId;
+	title: string;
+	price: number;
+	category: string;
+	description: string;
+	image: string;
+	rating: { rate: number; count: number };
+}

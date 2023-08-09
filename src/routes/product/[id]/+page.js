@@ -1,13 +1,4 @@
-/**
- *  @typedef {Object} Product
- *  @property {number} id
- *  @property {string} title
- *  @property {number} price
- *  @property {string} category
- *  @property {string} description
- *  @property {string} image
- *  @property {{rate: number, count: number}} rating
- */
+/**@typedef {import('$lib/types').Product} Product */
 
 /** @type {import('./$types').PageLoad} */
 export async function load({ params }) {

@@ -2,7 +2,7 @@
 	import Rating from '$components/Rating.svelte';
 	import Price from '$components/Price.svelte';
 
-	/** @type {string} */
+	/** @type {import('$lib/types').ProductId} */
 	export let id;
 	/** @type {string} */
 	export let title;
