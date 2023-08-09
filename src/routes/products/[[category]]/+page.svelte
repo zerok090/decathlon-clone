@@ -4,6 +4,7 @@
 
 	import Loading from '$components/Loading.svelte';
 	import ProductCard from '$components/ProductCard.svelte';
+	import Sliders from '~icons/fa/sliders';
 </script>
 
 {#await data.items.promise}
@@ -27,12 +28,22 @@
 		<div>
 			<section />
 			<section>
-				<nav class="flex">
-					<div>{items.length} Artikelen</div>
-					<div><button>Filters</button></div>
+				<nav
+					class="grid grid-flow-col text-xs grid-cols-3 gap-2 min-h-[3rem] p-2 items-center justify-between"
+				>
 					<div>
-						<select>
-							<option>Onze selectie</option>
+						<span class="border border-blue-950 p-1 px-2 rounded text-white bg-blue-950">{items.length}</span>
+						<span>Artikelen</span>
+					</div>
+					<button
+						class="flex justify-center border relative text-blue-500 border-blue-500 p-2 gap-2 items-center"
+					>
+						<span class="font-bold">Filters</span>
+						<div class="absolute right-0 px-2"><Sliders /></div>
+					</button>
+					<div class="flex justify-center align-middle h-full">
+						<select class="w-full p-2.5 border-r-8 border-transparent outline outline-transparent">
+							<option selected>Onze selectie</option>
 							<option>Prijs laag - hoog</option>
 							<option>Prijs hoog - laag</option>
 							<option>Best beoordeeld</option>

@@ -3,8 +3,8 @@
 /** @type {import('./$types').PageLoad} */
 export const load = ({ params }) => {
 	let url = '';
-	if (params.slug) {
-		url = `https://fakestoreapi.com/products/category/${params.slug}`;
+	if (params.category) {
+		url = `https://fakestoreapi.com/products/category/${params.category}`;
 	} else {
 		url = 'https://fakestoreapi.com/products/';
 	}
@@ -20,7 +20,7 @@ export const load = ({ params }) => {
 		});
 
 	return {
-		search: params.slug,
+		search: params.category,
 		items: { promise: items }
 	};
 };
