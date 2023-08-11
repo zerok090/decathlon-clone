@@ -50,12 +50,12 @@
 		/** @type {Product[]} */
 		const result = [];
 		if (!products) return result;
-		if (filterPrice) {
-			for (const product of products) {
-				if (filterPrice < product.price) continue;
+		if (filterPrice === undefined) return products;
 
-				result.push(product);
-			}
+		for (const product of products) {
+			if (filterPrice < product.price) continue;
+
+			result.push(product);
 		}
 
 		return result;
@@ -67,7 +67,7 @@
 {:else}
 	<div class="w-full">
 		<!-- search hero + result amount + categories -->
-		<div class="w-full bg-blue-400 p-1">
+		<div class="w-full text-white bg-blue-400 p-2">
 			<div>
 				<div>Jouw zoekopdracht:</div>
 				<div>{data.search}</div>
@@ -81,49 +81,86 @@
 		<div>
 			<section />
 			<section>
-				<nav
-					class="grid grid-flow-col text-xs grid-cols-3 gap-2 min-h-[3rem] p-2 items-center justify-between"
-				>
-					<div>
-						<span class="border border-blue-950 p-1 px-2 rounded text-white bg-blue-950"
-							>{productsToDisplay.length}</span
+				<div class="grid grid-flow-col lg:grid-cols-[300px_1fr]">
+					<div class="hidden lg:flex max-h-min flex-col bg-white w-full">
+						<div
+							class="text-white drop-shadow-md shadow-gray-200 w-full bg-blue-400 grid grid-flow-col gap-2 min-h-[3rem] p-3.5 items-center"
 						>
-						<span>Artikelen</span>
-					</div>
-					<button
-						on:click={() => (filtersOpen = !filtersOpen)}
-						class="flex justify-center border relative text-blue-500 border-blue-500 p-2 gap-2 items-center"
-					>
-						<span class="font-bold">Filters</span>
-						<div class="absolute right-0 px-2"><Sliders /></div>
-					</button>
-					<div class="flex justify-center align-middle h-full">
-						<select
-							bind:value={sortValue}
-							class="w-full p-2.5 border-r-8 border-transparent outline outline-transparent"
-						>
-							<option selected value="">Onze selectie</option>
-							<option value="asc">Prijs laag - hoog</option>
-							<option value="desc">Prijs hoog - laag</option>
-							<option value="rating">Best beoordeeld</option>
-						</select>
-					</div>
-				</nav>
-				{#if filtersOpen}
-					<div class="p-2 w-full border-t border-gray-200 border-solid">
-						<div class="grid grid-flow-col w-full gap-2">
-							<label for="price">Price</label>
-							<input id="price" type="range" bind:value={filterPrice} min="0" max={priceRange} step="5" />
-							<input class="w-full" bind:value={filterPrice} min=0 max={priceRange} />
+							<div class="flex gap-2 items-center w-full">
+								<div><Sliders /></div>
+								<h1>Filters</h1>
+							</div>
+						</div>
+						<div class="p-2">
+							<!-- Price filter -->
+							<div class="flex flex-col gap-2">
+								<label for="price">Prijs</label>
+								<input
+									id="price"
+									type="range"
+									bind:value={filterPrice}
+									min="0"
+									max={priceRange}
+									step="5"
+								/>
+								<input class="w-full" bind:value={filterPrice} min="0" max={priceRange} />
+							</div>
 						</div>
 					</div>
-				{/if}
-				<div
-					class="grid grid-cols-2 border-l border-t border-gray-200 border-solid sm:grid-cols-3 lg:grid-cols-4"
-				>
-					{#each productsToDisplay as product}
-						<ProductCard {...product} />
-					{/each}
+					<div>
+						<nav
+							class="grid grid-flow-col text-xs grid-cols-3 gap-2 min-h-[3rem] p-2 items-center justify-between"
+						>
+							<div>
+								<span class="border border-blue-950 p-1 px-2 rounded text-white bg-blue-950"
+									>{productsToDisplay.length}</span
+								>
+								<span>Artikelen</span>
+							</div>
+							<button
+								on:click={() => (filtersOpen = !filtersOpen)}
+								class="lg:invisible flex justify-center border relative text-blue-500 border-blue-500 p-2 gap-2 items-center"
+							>
+								<span class="font-bold">Filters</span>
+								<div class="absolute right-0 px-2"><Sliders /></div>
+							</button>
+							<div class="flex justify-center align-middle">
+								<select
+									bind:value={sortValue}
+									class="w-full p-2.5 border-r-8 border-transparent outline outline-transparent"
+								>
+									<option selected value="">Onze selectie</option>
+									<option value="asc">Prijs laag - hoog</option>
+									<option value="desc">Prijs hoog - laag</option>
+									<option value="rating">Best beoordeeld</option>
+								</select>
+							</div>
+						</nav>
+						{#if filtersOpen}
+							<div class="p-2 w-full border-t border-gray-200 border-solid">
+								<!-- Price filter -->
+								<div class="grid grid-flow-col w-full gap-2">
+									<label for="price">Price</label>
+									<input
+										id="price"
+										type="range"
+										bind:value={filterPrice}
+										min="0"
+										max={priceRange}
+										step="5"
+									/>
+									<input class="w-full" bind:value={filterPrice} min="0" max={priceRange} />
+								</div>
+							</div>
+						{/if}
+						<div
+							class="grid grid-cols-2 border-l border-t border-gray-200 border-solid sm:grid-cols-3 lg:grid-cols-4"
+						>
+							{#each productsToDisplay as product}
+								<ProductCard {...product} />
+							{/each}
+						</div>
+					</div>
 				</div>
 			</section>
 		</div>
