@@ -1,4 +1,5 @@
 <script>
+	/** @typedef {import('$lib/types').Product} Product */
 	import Loading from '$components/Loading.svelte';
 	import ProductCard from '$components/ProductCard.svelte';
 	import Sliders from '~icons/fa/sliders';
@@ -6,36 +7,59 @@
 	/** @type {import('./$types').PageData} */
 	export let data;
 	let loading = true;
-	/** @type {import('$lib/types').Product[] | undefined} */
+	/** @type {Product[] | undefined} */
 	let products;
-
-	data.items.promise.then((val) => {
-		loading = false;
-		products = val;
-	});
+	let filtersOpen = false;
 
 	/** @type {string} */
 	let sortValue;
-	let filters = {
-		price: [-Infinity, Infinity],
-		rating: [-Infinity, Infinity]
+	let priceRange = 0;
+	$: filterPrice = priceRange;
+
+	data.items.promise.then((val) => {
+		for (const product of val) {
+			priceRange = Math.max(Math.ceil(product.price), priceRange);
+		}
+
+		priceRange = priceRange;
+		products = val;
+		loading = false;
+	});
+
+	$: productsFiltered = filterProducts(filterPrice, products);
+	$: productsToDisplay = productsFiltered.sort((a, b) => {
+		if (sortValue !== '') {
+			if (sortValue === 'asc') {
+				return a.price - b.price;
+			}
+			if (sortValue === 'desc') {
+				return b.price - a.price;
+			}
+			if (sortValue === 'rating') {
+				return b.rating.rate - a.rating.rate;
+			}
+		}
+		return 0;
+	});
+
+	/**
+	 * @param {typeof filterPrice} filterPrice
+	 * @param {Product[]} [products]
+	 */
+	const filterProducts = (filterPrice, products) => {
+		/** @type {Product[]} */
+		const result = [];
+		if (!products) return result;
+		if (filterPrice) {
+			for (const product of products) {
+				if (filterPrice < product.price) continue;
+
+				result.push(product);
+			}
+		}
+
+		return result;
 	};
-	$: productsToDisplay =
-		(products &&
-			products
-				.filter((product) => {
-					if (filters.price[0] > product.price) return false;
-					if (filters.price[1] < product.price) return false;
-
-					if (filters.rating[0] > product.rating.rate) return false;
-					if (filters.rating[1] < product.rating.rate) return false;
-
-					return true;
-				})
-				.sort((a, b) => {
-					return a.price - b.price;
-				})) ||
-		[];
 </script>
 
 {#if loading}
@@ -54,8 +78,6 @@
 				<div />
 			</div>
 		</div>
-		<!-- amount + filter button (opens sidenav) (hidden on screens bigger than ) + sort -->
-		<!-- results -->
 		<div>
 			<section />
 			<section>
@@ -69,6 +91,7 @@
 						<span>Artikelen</span>
 					</div>
 					<button
+						on:click={() => (filtersOpen = !filtersOpen)}
 						class="flex justify-center border relative text-blue-500 border-blue-500 p-2 gap-2 items-center"
 					>
 						<span class="font-bold">Filters</span>
@@ -82,10 +105,19 @@
 							<option selected value="">Onze selectie</option>
 							<option value="asc">Prijs laag - hoog</option>
 							<option value="desc">Prijs hoog - laag</option>
-							<!-- <option value="rating">Best beoordeeld</option> -->
+							<option value="rating">Best beoordeeld</option>
 						</select>
 					</div>
 				</nav>
+				{#if filtersOpen}
+					<div class="p-2 w-full border-t border-gray-200 border-solid">
+						<div class="grid grid-flow-col w-full gap-2">
+							<label for="price">Price</label>
+							<input id="price" type="range" bind:value={filterPrice} min="0" max={priceRange} step="5" />
+							<input class="w-full" bind:value={filterPrice} min=0 max={priceRange} />
+						</div>
+					</div>
+				{/if}
 				<div
 					class="grid grid-cols-2 border-l border-t border-gray-200 border-solid sm:grid-cols-3 lg:grid-cols-4"
 				>
