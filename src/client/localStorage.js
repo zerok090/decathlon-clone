@@ -1,5 +1,9 @@
 import { browser } from '$app/environment';
 
+/**
+ * @param {string} key 
+ * @param {*} value 
+ */
 function replacer(key, value) {
 	if (value instanceof Map) {
 		return {
@@ -11,6 +15,10 @@ function replacer(key, value) {
 	}
 }
 
+/**
+ * @param {string} key 
+ * @param {*} value 
+ */
 function reviver(key, value) {
 	if (typeof value === 'object' && value !== null) {
 		if (value.dataType === 'Map') {
