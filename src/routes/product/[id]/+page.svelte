@@ -37,7 +37,7 @@
 				</div>
 				<div>{item.description}</div>
 				<button
-					on:click={() => cart.addItem(item.id)}
+					on:click={() => cart.addItem(item.id, item.price)}
 					class="font-bold text-sm uppercase w-full bg-yellow-300 p-3 hover:bg-yellow-400 transition-colors ease-linear"
 					>Toevoegen aan winkelwagen</button
 				>
