@@ -27,7 +27,7 @@
 	});
 
 	$: productsFiltered = filterProducts(filterPrice, products);
-	$: productsToDisplay = productsFiltered.sort((a, b) => {
+	$: productsToDisplay = [...productsFiltered].sort((a, b) => {
 		if (sortValue !== '') {
 			if (sortValue === 'asc') {
 				return a.price - b.price;
@@ -66,16 +66,10 @@
 	<Loading />
 {:else}
 	<div class="w-full">
-		<!-- search hero + result amount + categories -->
-		<div class="w-full text-white bg-blue-400 p-2">
+		<div class="w-full text-white bg-blue-400 px-14 py-12">
 			<div>
-				<div>Jouw zoekopdracht:</div>
-				<div>{data.search}</div>
+				<h1 class="text-2xl">Jouw zoekopdracht : <span>"{data.search}"</span></h1>
 				<div>{productsToDisplay.length} producten</div>
-			</div>
-			<div>
-				<div>Categorien bij je zoekopdracht</div>
-				<div />
 			</div>
 		</div>
 		<div>
@@ -102,8 +96,8 @@
 									min="0"
 									max={priceRange}
 									step="5"
-								/>
-								<input class="w-full" bind:value={filterPrice} min="0" max={priceRange} />
+									/>
+									<input class="border border-gray-200 bg-gray-200 p-2 w-full" bind:value={filterPrice} min="0" max={priceRange} />
 							</div>
 						</div>
 					</div>
