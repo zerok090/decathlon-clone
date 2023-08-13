@@ -14,12 +14,12 @@
 		<section />
 		<section class="w-full">
 			<ul class="capitalize grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">
-				<li class="flex justify-center w-full px-4 py-2 border border-black hover:bg-gray-200">
-					<a href="/products/">All</a>
+				<li class="w-full px-4 py-2 border border-black hover:bg-gray-200">
+					<a class=" flex justify-center  w-full" href="/products">All</a>
 				</li>
 				{#each $categories as category}
-					<li class="flex justify-center w-full px-4 py-2 border border-black hover:bg-gray-200">
-						<a href={`/products/${category}`}>{category}</a>
+					<li class="w-full px-4 py-2 border border-black hover:bg-gray-200">
+						<a class=" flex justify-center  w-full" href={`/products/${category}`}>{category}</a>
 					</li>
 				{/each}
 			</ul>
