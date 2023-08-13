@@ -85,7 +85,7 @@
 {#if loading}
 	<Loading />
 {:else}
-	<div class="w-full">
+	<div class="w-full z-0">
 		<div class="w-full text-white bg-blue-400">
 			{#if data.search}
 				<div class="px-14 py-12">
