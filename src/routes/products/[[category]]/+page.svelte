@@ -1,14 +1,21 @@
 <script>
+	import { afterNavigate } from '$app/navigation';
 	/** @typedef {import('$lib/types').Product} Product */
 	import Loading from '$components/Loading.svelte';
 	import ProductCard from '$components/ProductCard.svelte';
+	import { onMount } from 'svelte';
 	import Sliders from '~icons/fa/sliders';
 
 	/** @type {import('./$types').PageData} */
 	export let data;
 	let loading = true;
-	/** @type {Product[] | undefined} */
-	let products;
+
+	onMount(async () => await getProducts(data.search));
+	afterNavigate(async () => await getProducts(data.search));
+
+	/** @type {Product[]} */
+	let products = [];
+
 	let filtersOpen = false;
 
 	/** @type {string} */
@@ -16,15 +23,28 @@
 	let priceRange = 0;
 	$: filterPrice = priceRange;
 
-	data.items.promise.then((val) => {
-		for (const product of val) {
-			priceRange = Math.max(Math.ceil(product.price), priceRange);
-		}
+	/** @param {string} [search] */
+	async function getProducts(search) {
+		loading = true;
+		let url = 'https://fakestoreapi.com/products/';
+		if (search) url = `https://fakestoreapi.com/products/category/${data.search}`;
 
-		priceRange = priceRange;
-		products = val;
-		loading = false;
-	});
+		fetch(url)
+			.then((response) => response.json())
+			.then((data) => {
+				const result = [];
+				for (const product of data) {
+					result.push(product);
+					priceRange = Math.max(Math.ceil(product.price), priceRange);
+				}
+
+				products = result;
+				loading = false;
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	}
 
 	$: productsFiltered = filterProducts(filterPrice, products);
 	$: productsToDisplay = [...productsFiltered].sort((a, b) => {
@@ -178,6 +198,6 @@
 
 <style>
 	.bottom-shadow {
-		box-shadow: 0 2px 2px 0px rgb(229 231 235)
+		box-shadow: 0 2px 2px 0px rgb(229 231 235);
 	}
 </style>
