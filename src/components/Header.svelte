@@ -4,15 +4,13 @@
 	import Hamburger from '~icons/fa/bars';
 	import Search from '~icons/fa/search';
 
-	import { categories, openMenu } from '../stores/navigationStore';
+	import { openMenu } from '../stores/navigationStore';
 
 	let input = '';
-	let searchFocussed = false;
-	$: categoriesFiltered = $categories.filter((category) => category.includes(input));
 </script>
 
 <header
-	class="drop-shadow-lg overflow-x-hidden sticky w-screen translate-x-0 z-20 top-0 left-0 h-full"
+	class="drop-shadow-lg overflow-hidden sticky w-screen translate-x-0 z-30 top-0 left-0 h-full"
 >
 	<div class="bg-white w-full">
 		<div class="flex flex-wrap justify-between sm:justify-normal sm:flex-nowrap sm:gap-1">
@@ -40,28 +38,21 @@
 			</div>
 			<!--Search-->
 			<div
-				class="flex content-center order-4 w-full p-2 border border-gray-200 sm:order-3 sm:grow sm:w-0 sm:border-none"
+				class="flex relative content-center order-4 w-full p-2 border border-gray-200 sm:order-3 sm:grow sm:w-0 sm:border-none"
 			>
 				<form
-					class="flex w-full border relative overflow-visible border-gray-200 bg-gray-200"
+					class="flex w-full border relative border-gray-200 z-40 bg-gray-200"
 					method="get"
 					action={`/products/${input}`}
 				>
 					<input
-						type="search"
+						type="text"
 						class="p-2 min-w-0 outline-none grow placeholder:uppercase placeholder:italic placeholder:font-semibold focus:outline-non bg-transparent"
 						inputmode="text"
-						on:focus={() => (searchFocussed = true)}
-						on:blur={() => (searchFocussed = false)}
 						bind:value={input}
 						placeholder="Zoek een artikel of sport"
 						list="searchResults"
 					/>
-					<datalist id="searchResults">
-						{#each categoriesFiltered as category}
-							<option>{category}</option>
-						{/each}
-					</datalist>
 
 					<button
 						class="z-10 relative bg-white h-full p-3 before:absolute before:bg-white before:w-full before:origin-top-left before:h-full before:skew-x-[-10deg] before:top-0 before:left-0 before:-z-10"
