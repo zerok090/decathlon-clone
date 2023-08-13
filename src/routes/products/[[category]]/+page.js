@@ -2,7 +2,8 @@
 
 /** @type {import('./$types').PageLoad} */
 export const load = ({ params }) => {
-	const url = 'https://fakestoreapi.com/products/';
+	let url = 'https://fakestoreapi.com/products/';
+	if (params.category) url = `https://fakestoreapi.com/products/category/${params.category}`
 	
 	/** @type {Promise<Product[]>} */
 	const items = fetch(url)

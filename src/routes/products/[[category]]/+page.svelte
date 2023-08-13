@@ -66,11 +66,13 @@
 	<Loading />
 {:else}
 	<div class="w-full">
-		<div class="w-full text-white bg-blue-400 px-14 py-12">
-			<div>
-				<h1 class="text-2xl">Jouw zoekopdracht : <span>"{data.search}"</span></h1>
-				<div>{productsToDisplay.length} producten</div>
-			</div>
+		<div class="w-full text-white bg-blue-400">
+			{#if data.search}
+				<div class="px-14 py-12">
+					<h1 class="text-2xl">Jouw zoekopdracht : <span>"{data.search}"</span></h1>
+					<div>{productsToDisplay.length} producten</div>
+				</div>
+			{/if}
 		</div>
 		<div>
 			<section />
@@ -78,7 +80,7 @@
 				<div class="grid grid-flow-col lg:grid-cols-[300px_1fr]">
 					<div class="hidden lg:flex max-h-min flex-col bg-white w-full">
 						<div
-							class="text-white drop-shadow-md shadow-gray-200 w-full bg-blue-400 grid grid-flow-col gap-2 min-h-[3rem] p-3.5 items-center"
+							class="text-white w-full bottom-shadow bg-blue-400 grid grid-flow-col gap-2 min-h-[3rem] p-3.5 items-center"
 						>
 							<div class="flex gap-2 items-center w-full">
 								<div><Sliders /></div>
@@ -96,8 +98,13 @@
 									min="0"
 									max={priceRange}
 									step="5"
-									/>
-									<input class="border border-gray-200 bg-gray-200 p-2 w-full" bind:value={filterPrice} min="0" max={priceRange} />
+								/>
+								<input
+									class="border border-gray-200 bg-gray-200 p-2 w-full"
+									bind:value={filterPrice}
+									min="0"
+									max={priceRange}
+								/>
 							</div>
 						</div>
 					</div>
@@ -143,7 +150,13 @@
 										max={priceRange}
 										step="5"
 									/>
-									<input class="w-full" bind:value={filterPrice} min="0" max={priceRange} />
+									<input
+										class="w-full"
+										type="number"
+										bind:value={filterPrice}
+										min="0"
+										max={priceRange}
+									/>
 								</div>
 							</div>
 						{/if}
@@ -162,3 +175,9 @@
 		<!-- satisfaction level with page -->
 	</div>
 {/if}
+
+<style>
+	.bottom-shadow {
+		box-shadow: 0 2px 2px 0px rgb(229 231 235)
+	}
+</style>
