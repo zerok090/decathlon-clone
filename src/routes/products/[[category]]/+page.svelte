@@ -1,9 +1,11 @@
 <script>
-	import { afterNavigate } from '$app/navigation';
 	/** @typedef {import('$lib/types').Product} Product */
+	import { onMount } from 'svelte';
+	import { afterNavigate } from '$app/navigation';
+
 	import Loading from '$components/Loading.svelte';
 	import ProductCard from '$components/ProductCard.svelte';
-	import { onMount } from 'svelte';
+	
 	import Sliders from '~icons/fa/sliders';
 
 	/** @type {import('./$types').PageData} */
@@ -27,7 +29,7 @@
 	async function getProducts(search) {
 		loading = true;
 		let url = 'https://fakestoreapi.com/products/';
-		if (search) url = `https://fakestoreapi.com/products/category/${data.search}`;
+		if (search && search !== 'all') url = `https://fakestoreapi.com/products/category/${data.search}`;
 
 		fetch(url)
 			.then((response) => response.json())
