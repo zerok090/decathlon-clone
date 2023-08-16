@@ -1,6 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
-	import { fade } from 'svelte/transition';
+	import { scale } from 'svelte/transition';
 
 	import Right from '~icons/fa/chevron-right';
 	import Left from '~icons/fa/chevron-left';
@@ -76,13 +76,9 @@
 			{#each slides as _, index}
 				<button class="transparent rounded-full" on:click={() => goToIndex(index)}>
 					{#if index === currentIndex}
-						<div
-							in:fade
-							out:fade
-							class="rounded-full transition-all ease-linear duration-1000 bg-black h-[1.2rem] w-[1.2rem] opacity-100"
-						/>
+						<div in:scale class="rounded-full bg-black h-[1.2rem] w-[1.2rem] opacity-100" />
 					{:else}
-						<div in:fade out:fade class="rounded-full bg-black h-[0.8rem] w-[0.8rem] opacity-20" />
+						<div in:scale class="rounded-full bg-black h-[0.8rem] w-[0.8rem] opacity-20" />
 					{/if}
 				</button>
 			{/each}
