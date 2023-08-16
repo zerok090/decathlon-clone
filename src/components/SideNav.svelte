@@ -15,7 +15,7 @@
 		'top-0',
 		'w-screen',
 		'left-0',
-		'flex-row z-30 overflow-hidden ease-in-out'
+		'flex-row z-50 overflow-hidden ease-in-out'
 	);
 
 	$: stylesMenuButton = clsx(

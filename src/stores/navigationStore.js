@@ -12,12 +12,21 @@ function menuStore() {
 export const openMenu = menuStore();
 
 function categoryStore() {
-	const { subscribe, set } = writable([]);
+	/** @type {string[]} */
+	const initValue = [];
+	const { subscribe, set } = writable(initValue);
+
+	/** 
+	 * @param {string[]} categories
+	 */
+	const setItems = (categories) => {
+		set(['all', ...categories]);
+	};
 
 	return {
 		subscribe,
-		set,
-	}
+		setItems
+	};
 }
 
 export const categories = categoryStore();
