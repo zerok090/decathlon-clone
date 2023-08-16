@@ -7,13 +7,13 @@
 		fetch('https://fakestoreapi.com/products/categories')
 			.then((res) => res.json())
 			.then((json) => {
-				categories.set(['all', ...json]);
+				categories.setItems(json);
 			});
 	});
 </script>
 
 <div class="flex-1 mt-4 flex justify-center">
-	<div class="max-w-[121.6rem]">
+	<div class="flex flex-col gap-1 max-w-[121.6rem]">
 		<section class="w-full">
 			<Carousel
 				slides={[

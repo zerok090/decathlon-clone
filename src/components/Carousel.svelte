@@ -51,7 +51,7 @@
 	});
 </script>
 
-<div class="relative border border-black rounded-xl w-full aspect-square m-0 overflow-hidden">
+<div class="relative border border-black rounded-xl w-full aspect-square md:aspect-video overflow-hidden">
 	<!-- Content -->
 	<div bind:this={carousel} class="flex flex-row w-full h-full transition-transform ease-in-out">
 		{#each slides as slide}
