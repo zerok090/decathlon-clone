@@ -14,12 +14,12 @@
 
 <div class="flex-1 mt-4 flex justify-center">
 	<div class="flex flex-col gap-1 max-w-[121.6rem]">
-		<section class="w-full">
+		<section>
 			<Carousel
 				slides={[
-					{ img: 'img1', url: 'url1' },
-					{ img: 'img2', url: 'url2' },
-					{ img: 'img3', url: 'url3' }
+					{ img: '/carousel1.jpg', url: '/products/jewelery' },
+					{ img: '/carousel2.png', url: "/products/men's clothing" },
+					{ img: '/carousel3.webp', url: "/products/wommen's clothing" }
 				]}
 			/>
 		</section>

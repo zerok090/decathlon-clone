@@ -54,11 +54,10 @@
 <div class="relative border border-black rounded-xl w-full aspect-square md:aspect-video overflow-hidden">
 	<!-- Content -->
 	<div bind:this={carousel} class="flex flex-row w-full h-full transition-transform ease-in-out">
-		{#each slides as slide}
-			<div class="flex items-center justify-center min-w-full min-h-full">
-				{slide.url}
-				{slide.img}
-			</div>
+		{#each slides as slide, index}
+			<a href={slide.url} class="flex items-center justify-center min-w-full min-h-full">
+				<img src={slide.img} alt={`image-${index + 1}`} />
+			</a>
 		{/each}
 	</div>
 	<!-- Controls -->
