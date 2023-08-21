@@ -8,6 +8,7 @@
 	import Play from '~icons/fa/play';
 	import Image from '$components/Image.svelte';
 
+
 	let currentIndex = 0;
 	/** @type {HTMLDivElement} */
 	let carousel;
@@ -51,6 +52,7 @@
 		startCycle();
 	});
 </script>
+
 
 <div
 	class="relative rounded-xl w-full aspect-square md:aspect-video overflow-hidden"
