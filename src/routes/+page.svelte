@@ -3,6 +3,9 @@
 	import { categories } from '$stores/navigationStore';
 	import Carousel from '$components/Carousel.svelte';
 
+	/** @type {import('./$types').PageData} */
+	export let data;
+
 	onMount(() => {
 		fetch('https://fakestoreapi.com/products/categories')
 			.then((res) => res.json())
@@ -14,6 +17,16 @@
 
 <div class="flex-1 flex justify-center">
 	<div class="flex flex-col gap-4 max-w-[70rem] p-4">
+		<section>
+			{#await data.products then products}
+				{#if products}
+					{#each products.data.products.edges as product}
+						<p>{product.node.id}</p>
+						<p>{product.node.title}</p>
+					{/each}
+				{/if}
+			{/await}
+		</section>
 		<section class="w-full">
 			<Carousel
 				slides={[
