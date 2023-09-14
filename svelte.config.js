@@ -11,7 +11,8 @@ const config = {
 		alias: {
 			'$components' : 'src/components',
 			'$stores' : 'src/stores',
-			'$lib' : 'src/lib'
+			'$lib' : 'src/lib',
+			'$client' : 'src/client'
 		}
 	},
 	preprocess: vitePreprocess()

@@ -9,6 +9,4 @@
 	export let decoding = 'async';
 </script>
 
-<picture class="w-full h-full">
-	<img class="object-cover w-full h-full" {src} {alt} {loading} {decoding} />
-</picture>
+<img class="object-cover w-full h-full" {src} {alt} {loading} {decoding} />

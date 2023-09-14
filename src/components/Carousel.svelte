@@ -8,7 +8,6 @@
 	import Play from '~icons/fa/play';
 	import Image from '$components/Image.svelte';
 
-
 	let currentIndex = 0;
 	/** @type {HTMLDivElement} */
 	let carousel;
@@ -49,26 +48,24 @@
 	}
 
 	onMount(() => {
-		startCycle();
+		// startCycle();
 	});
 </script>
 
-
-<div
-	class="relative rounded-xl w-full aspect-square md:aspect-video overflow-hidden"
->
+<div class="relative rounded-xl w-full aspect-square md:aspect-video overflow-hidden">
 	<!-- Content -->
 	<div bind:this={carousel} class="flex flex-row w-full h-full transition-transform ease-in-out">
 		{#each slides as slide}
-			<a href={slide.img} class="flex items-center justify-center min-w-full min-h-full object-cover">
-				<Image alt={slide.alt} src={slide.url} />
+			<a
+				href={slide.img}
+				class="flex items-center justify-center min-w-full min-h-full object-cover"
+			>
+				<img class="w-full h-full object-cover" alt={slide.alt} src={slide.url} />
 			</a>
 		{/each}
 	</div>
 	<!-- Controls -->
-	<div
-		class="absolute flex text-xs w-full items-center bottom-0 p-4 justify-end md:justify-center"
-	>
+	<div class="absolute flex text-xs w-full items-center bottom-0 p-4 justify-end md:justify-center">
 		<div class="flex flex-row gap-2 text-white">
 			<button
 				on:click={() => {
@@ -77,7 +74,7 @@
 				}}><Left /></button
 			>
 			<!-- Current slide nav -->
-			<div class="flex gap-1 ">
+			<div class="flex gap-1">
 				{#each slides as _, index}
 					<button class="transparent rounded-full" on:click={() => goToIndex(index)}>
 						{#if index === currentIndex}

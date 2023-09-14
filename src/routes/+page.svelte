@@ -3,6 +3,9 @@
 	import { categories } from '$stores/navigationStore';
 	import Carousel from '$components/Carousel.svelte';
 
+	// /** @type {import('./$types').PageData} */
+	// export let data;
+
 	onMount(() => {
 		fetch('https://fakestoreapi.com/products/categories')
 			.then((res) => res.json())
@@ -13,13 +16,21 @@
 </script>
 
 <div class="flex-1 flex justify-center">
-	<div class="flex flex-col gap-4 max-w-[70rem] p-4">
+	<div class="flex flex-col gap-4 p-4 max-w-[70rem]">
+		<!-- <section>
+				{#if data.products}
+					{#each data.products.data.products.edges as product}
+						<p>{product.node.id}</p>
+						<p>{product.node.title}</p>
+					{/each}
+				{/if}
+		</section> -->
 		<section class="w-full">
 			<Carousel
 				slides={[
 					{ url: '/carousel1.jpg', img: '/products/jewelery', alt: 'Invicsible Nike Pro' },
 					{ url: '/carousel2.jpg', img: "/products/men's clothing", alt: 'Take Flight Adidas' },
-					{ url: '/carousel3.jpg', img: "/products/women's clothing", alt: 'Puma' }
+					{ url: '/carousel3.jpg', img: "/products/women's clothing", alt: 'Puma' },
 				]}
 			/>
 		</section>
