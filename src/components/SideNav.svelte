@@ -34,13 +34,7 @@
 		transition:slide={{ delay: 0, duration: 300, easing: quadIn, axis: 'x' }}
 		class={stylesSideNav}
 	>
-		<nav class="w-[40rem] h-full bg-blue-400">
-			<div>ELEMENT</div>
-			<div>ELEMENT</div>
-			<div>ELEMENT</div>
-			<div>ELEMENT</div>
-			<div>ELEMENT</div>
-		</nav>
+		<nav class="w-[40rem] h-full bg-blue-400" />
 		<button
 			class="bg-white/60 flex top-0 -z-1 w-full h-screen cursor-default"
 			on:click={openMenu.toggle}

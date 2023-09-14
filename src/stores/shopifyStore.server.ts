@@ -1,4 +1,5 @@
-import type { ProductsResponse } from "$lib/types";
+import type { ProductsResponse } from '$lib/types';
+import { SHOPIFY_ACCESS_TOKEN } from '$env/static/private';
 
 export const getProducts = async (): Promise<ProductsResponse | undefined> => {
 	try {
@@ -6,7 +7,7 @@ export const getProducts = async (): Promise<ProductsResponse | undefined> => {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
-				'X-Shopify-Access-Token': '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'
+				'X-Shopify-Access-Token': SHOPIFY_ACCESS_TOKEN
 			},
 			body: JSON.stringify({
 				query: `{

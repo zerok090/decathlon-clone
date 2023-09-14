@@ -10,7 +10,7 @@
 </script>
 
 <header
-	class="drop-shadow-lg overflow-hidden sticky w-screen translate-x-0 z-30 top-0 left-0 h-full"
+	class="drop-shadow-lg overflow-hidden sticky w-screen max-w-full translate-x-0 z-30 top-0 left-0 h-full"
 >
 	<div class="bg-white w-full">
 		<div class="flex flex-wrap justify-between sm:justify-normal sm:flex-nowrap sm:gap-1">

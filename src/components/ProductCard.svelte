@@ -6,16 +6,16 @@
 	export let id;
 	/** @type {string} */
 	export let title;
-	/** @type {string} */
-	export let description;
+	// /** @type {string} */
+	// export let description;
 	/** @type {string} */
 	export let image;
 	/** @type {number} */
 	export let price;
 	/** @type {{rate: number, count: number}} */
 	export let rating;
-	/** @type {string} */
-	export let category;
+	// /** @type {string} */
+	// export let category;
 </script>
 
 <a
