@@ -8,12 +8,6 @@
 </script>
 
 <div class="relative mb-4 w-full bg-gray-200">
-	<!-- <section class="flex flex-row justify-center gap-4 bg-white px-4 py-2">
-		<div>Winkelwagen</div>
-		<div>Gegevens</div>
-		<div>Bezorgen</div>
-		<div>Betalen</div>
-	</section> -->
 	<div class="flex flex-col gap-4 p-4 mb-16 lg:flex-row lg:justify-center">
 		<section class="flex flex-col gap-4">
 			<h1 class="font-bold text-2xl">Winkelwagen</h1>
